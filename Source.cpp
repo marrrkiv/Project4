@@ -1,3 +1,4 @@
+
 #include <iostream>
 #include <string>
 using namespace std;
@@ -23,6 +24,7 @@ class pedexcursion : public excursion
 		double salary;
 		int cost;
 		int proz;
+		double sum;
 	public:
 		pedexcursion();
 		pedexcursion(string g, int c, int p);
@@ -35,6 +37,7 @@ pedexcursion::pedexcursion():guide("unknown"),salary(0),cost(0),proz(0){}
 pedexcursion::pedexcursion(string g, int c, int p): guide(g), salary(c*p/100),cost(c),proz(p){}
 void pedexcursion::input()
 {
+	sum = 0;
 	cout << "name of guide : ";
 	cin >> guide;
 	cout << "cost of excursion : ";
@@ -42,13 +45,16 @@ void pedexcursion::input()
 	cout << "prozent : ";
 	cin >> proz;
 	salary = cost * proz / 100;
+
 }
 void pedexcursion::print(pedexcursion arr[], int size)
 {
 	for (int i = 0;i < size;i++)
 	{
 		cout << arr[i].guide << endl;
+		sum += arr[i].salary;
 	}
+	cout << "Sumary summ = " << sum;
 }
 void pedexcursion::bubblesort(pedexcursion arr[],int size)
 {
@@ -67,6 +73,7 @@ int main()
 {
 	pedexcursion arr[10];
 	int n;
+	
 	cout << "input count of guides : ";
 	cin >> n;
 	for (int i = 0; i < n; i++)
@@ -75,14 +82,12 @@ int main()
 		arr[i].input();
 	}
 	arr->bubblesort(arr,n);
+	cout << endl << "Sorted salaries :" << endl;
 	arr->print(arr, n);
 	return 0;
 }
 
-//додати відсоток зарплатні і цілу ціну екскурсії
-
-
 //Створити базовий клас ЕКСКУРСІЯ(задаються назва, дата, тривалість, вартість).
 //Створити похідний клас ПІШОХІДНА ЕКСКУРСІЯ(задаються дані про гіда та частка заробітку гіда у вартості).
-//Для введених даних про екскурсії обчислити сумарний заробіток
+//Для введених даних про екскурсії обчислити сумарний заробіток	
 //для кожного гіда і відсортувати заробітки гідів за спаданням.
